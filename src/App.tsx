@@ -1,9 +1,10 @@
 import './App.css';
+import Chessboard from './components/Chessboard/Chessboard.tsx';
 
 function App() {
   return (
-    <div className="App">
-      chess
+    <div>
+      <Chessboard />
     </div>
   );
 }
