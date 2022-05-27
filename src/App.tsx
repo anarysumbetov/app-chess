@@ -3,7 +3,7 @@ import Chessboard from './components/Chessboard/Chessboard.tsx';
 
 function App() {
   return (
-    <div>
+    <div id="app">
       <Chessboard />
     </div>
   );
