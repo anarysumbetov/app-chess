@@ -12,3 +12,7 @@
 #white-tile {
     background-color: #ebecd0;
 }
+
+#tile img {
+    width: 80px;
+}
