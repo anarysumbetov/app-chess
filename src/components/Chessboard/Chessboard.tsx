@@ -74,7 +74,44 @@ for(let i = 0; i < 8; i++) {
     initialBoardState.push({image: "assets/images/pawn_w.png", x: i, y: 1, type: PieceType.PAWN, team: TeamType.OUR })
 }
 
+
+
 export default function Chessboard() {
+    const [activePiece, setActivePiece] = useState<HTMLElement | null>(null);
+    const chessboardRef = useRef<HTMLDivElement>(null);
+
+    function grabPiece(e: React.MouseEvent) {
+        const element = e.target as HTMLElement;
+        const chessboard = chessboardRef.current;
+        if (element.classList.contains("chess-piece") && chessboard) {
+            const x = e.clientX - 50;
+            const y = e.clientY - 50;
+            element.style.position = "absolute";
+            element.style.left = `${x}px`;
+            element.style.top = `${y}px`;
+            
+            setActivePiece(element);
+        }
+    }
+
+    function movePiece(e: React.MouseEvent) {
+        const chessboard = chessboardRef.current;
+        if(activePiece && chessboard){         
+            const minX = chessboard.offsetLeft - 25;
+            const minY = chessboard.offsetTop - 25;
+            const maxX = chessboard.offsetLeft + chessboard.clientWidth - 75;
+            const maxY = chessboard.offsetTop + chessboard.clientHeight - 75;
+            const x = e.clientX - 50;
+            const y = e.clientY - 50;
+            activePiece.style.position = "absolute";
+        }
+    }
+
+    function dropPiece(e: React.MouseEvent) {
+        const chessboard = chessboardRef.current;
+        if (activePiece && chessboard) {}
+    }
+
     let board = [];
     
     for(let j = verticalAxis.length - 1; j >= 0; j--){
@@ -91,5 +128,14 @@ export default function Chessboard() {
             board.push(<Tile key={`${j}, ${i}`} image={image} number={number} />);
         }
     }
-    return <div id="chessboard">{board}</div>
+    return (
+    <div 
+        onMouseMove={(e) => movePiece(e)} 
+        onMouseDown={e => grabPiece(e)} 
+        onMouseUp={(e) => dropPiece(e)}
+        id="chessboard"
+    >
+        {board}
+    </div>
+    );
 }
