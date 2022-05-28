@@ -74,8 +74,6 @@ for(let i = 0; i < 8; i++) {
     initialBoardState.push({image: "assets/images/pawn_w.png", x: i, y: 1, type: PieceType.PAWN, team: TeamType.OUR })
 }
 
-
-
 export default function Chessboard() {
     const [activePiece, setActivePiece] = useState<HTMLElement | null>(null);
     const chessboardRef = useRef<HTMLDivElement>(null);
@@ -104,6 +102,32 @@ export default function Chessboard() {
             const x = e.clientX - 50;
             const y = e.clientY - 50;
             activePiece.style.position = "absolute";
+            
+            //If x is smaller than minimum amount
+            if(x < minX) {
+                activePiece.style.left = `${minX}px`;
+            }
+            //If x is bigger than maximum amount 
+            else if(x > maxX) {
+                activePiece.style.left = `${maxX}px`;
+            }
+            //If x is in the constraints
+            else {
+                activePiece.style.left = `${x}px`;
+            }
+
+            //If y is smaller than minimum amount
+            if(y < minY) {
+                activePiece.style.top = `${minY}px`;
+            }
+            //If y is bigger than maximum amount 
+            else if(y > maxY) {
+                activePiece.style.top = `${maxY}px`;
+            }
+            //If y is in the constraints
+            else {
+                activePiece.style.top = `${y}px`;
+            }
         }
     }
 
@@ -134,6 +158,7 @@ export default function Chessboard() {
         onMouseDown={e => grabPiece(e)} 
         onMouseUp={(e) => dropPiece(e)}
         id="chessboard"
+        ref={chessboardRef}
     >
         {board}
     </div>
