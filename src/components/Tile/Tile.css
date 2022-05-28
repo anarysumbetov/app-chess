@@ -1,11 +1,11 @@
-#tile {
+.tile {
     display: grid;
     place-content: center;
     width: 100px;
     height: 100px;
 }
 
-#tile #chess-piece {
+.tile .chess-piece {
     width: 100px;
     height: 100px;
     background-repeat: no-repeat;
@@ -21,14 +21,14 @@
     cursor: grabbing;
 }
 
-#black-tile { 
+.black-tile { 
     background-color: #779556;
 }
 
-#white-tile {
+.white-tile {
     background-color: #ebecd0;
 }
 
-#tile img {
+.tile img {
     width: 80px;
 }

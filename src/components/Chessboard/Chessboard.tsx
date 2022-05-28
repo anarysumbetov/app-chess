@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
-import './Chessboard.css';
-import Tile from '../Tile/Tile.tsx';
-import Referee from "../../referee/Referee.tsx";
+import "./Chessboard.css";
+import Tile from "../Tile/Tile.tsx";
+import Referee from "../../referee/Referee.ts";
 
 const verticalAxis = ["1", "2", "3", "4", "5", "6", "7", "8"];
 const horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
@@ -85,6 +85,8 @@ export default function Chessboard() {
         const element = e.target as HTMLElement;
         const chessboard = chessboardRef.current;
         if (element.classList.contains("chess-piece") && chessboard) {
+            setGridX(Math.floor((e.clientX - chessboard.offsetLeft) / 100));
+            setGridY(Math.abs(Math.ceil((e.clientY - chessboard.offsetTop - 800) / 100)));
             const x = e.clientX - 50;
             const y = e.clientY - 50;
             element.style.position = "absolute";
