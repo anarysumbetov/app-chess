@@ -29,7 +29,6 @@ export enum PieceType {
 }
 
 const initialBoardState: Piece[] = [];
-const pieces: Piece[] = [];
 
 for(let p = 0; p < 2; p++) {
     const teamType = (p === 0) ? TeamType.OPPONENT : TeamType.OUR;
@@ -76,7 +75,11 @@ for(let i = 0; i < 8; i++) {
 
 export default function Chessboard() {
     const [activePiece, setActivePiece] = useState<HTMLElement | null>(null);
+    const [gridX, setGridX] = useState(0);
+    const [gridY, setGridY] = useState(0);
+    const [pieces, setPieces] = useState<Piece[]>(initialBoardState)
     const chessboardRef = useRef<HTMLDivElement>(null);
+    const referee = new Referee();
 
     function grabPiece(e: React.MouseEvent) {
         const element = e.target as HTMLElement;
@@ -133,7 +136,34 @@ export default function Chessboard() {
 
     function dropPiece(e: React.MouseEvent) {
         const chessboard = chessboardRef.current;
-        if (activePiece && chessboard) {}
+        if (activePiece && chessboard) {
+            const x = Math.floor((e.clientX - chessboard.offsetLeft) / 100);
+            const y = Math.abs(
+                Math.ceil((e.clientY - chessboard.offsetTop - 800) / 100)
+                );
+                
+            //UPDATES THE PIECE POSITION
+            setPieces((value) => {
+                const pieces = value.map((p) => {
+                    if (p.x === gridX && p.y === gridY) {
+                        const validMove = referee.isValidMove(gridX, gridY, x, y, p.type, p.team);
+
+                        if(validMove) {
+                            p.x = x;
+                            p.y = y;
+                        }
+                        else {
+                            activePiece.style.position = 'relative';
+                            activePiece.style.removeProperty('top');
+                            activePiece.style.removeProperty('left');
+                        }
+                    }
+                    return p;
+                });
+                return pieces;
+            });
+            setActivePiece(null);
+        }
     }
 
     let board = [];
