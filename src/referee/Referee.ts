@@ -1,13 +1,21 @@
-import { PieceType, TeamType } from "./../components/Chessboard/Chessboard.tsx";
+import { PieceType, TeamType, Piece } from "./../components/Chessboard/Chessboard.tsx";
 
 export default class Referee {
+    tileIsOccupied(x: number, y: number, boardState: Piece[]): boolean {
+        console.log("Checking if tile is occupied...")
+
+        return true;
+    }
+
     isValidMove(
         px: number,
         py: number, 
         x: number, 
         y: number, 
         type: PieceType, 
-        team: TeamType) {
+        team: TeamType,
+        boardState: Piece[]
+        ) {
         console.log("Referee is checking the move...");
         console.log(`Previous location: (${px},${py})`);
         console.log(`Current location: (${x},${y})`);
@@ -18,11 +26,24 @@ export default class Referee {
             if(team === TeamType.OUR) {
                 if(py === 1) {
                     if(px === x && (y - py === 1 || y - py === 2)) {
+                        if(this.tileIsOccupied(x, y, boardState)) {
+
+                        }
                         return true;
                     }
                 }
                 else {
                     if(px === x && y - py === 1) {
+                        return true;
+                    }
+                }
+            } else {
+                if(py === 6) {
+                    if(px === x && (y - py === -1 || y - py === -2)) {
+                        return true;
+                    }
+                } else {
+                    if(px === x && y - py === -1) {
                         return true;
                     }
                 }
