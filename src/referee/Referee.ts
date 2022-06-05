@@ -116,62 +116,73 @@ export default class Referee {
             //Movement and attack logic for the bishop
 
             for (let i = 1; i < 8; i++) {
-            //Up right movement
-            if (desiredPosition.x > initialPosition.x && desiredPosition.y > initialPosition.y) {
-                let passedPosition: Position = {x: initialPosition.x + i, y: initialPosition.y + i};
-                console.log(`Passed position: ${passedPosition.x}, ${passedPosition.y}`);
-                console.log(`Desired position: ${desiredPosition.x}, ${desiredPosition.y}`);
-                if (passedPosition.x === desiredPosition.x && passedPosition.y === desiredPosition.y) {
-                    console.log("We got the same passed and desired positions!");
+                //Up right movement
+                if (desiredPosition.x > initialPosition.x && desiredPosition.y > initialPosition.y) {
+                    let passedPosition: Position = {x: initialPosition.x + i, y: initialPosition.y + i};
+                    //Check if the tile is the destination tile
+                    if (passedPosition.x === desiredPosition.x && passedPosition.y === desiredPosition.y) {
+                        //Dealing with destination tile
+                        if (this.tileIsEmptyOrOccupiedByOpponent(passedPosition, boardState, team)) {
+                            return true;
+                        }
+                    } else {
+                        //Dealing with passing tile
+                        if (this.tileIsOccupied(passedPosition, boardState)) {
+                            break;
+                        }
+                    }
                 }
-                if (this.tileIsOccupied(passedPosition, boardState)) {
-                    console.log("Illegal move");
-                    break;
+
+                //Bottom right movement
+                if (desiredPosition.x > initialPosition.x && desiredPosition.y < initialPosition.y) {
+                    let passedPosition: Position = {x: initialPosition.x + i, y: initialPosition.y - i};
+                    //Check if the tile is the destination tile
+                    if (passedPosition.x === desiredPosition.x && passedPosition.y === desiredPosition.y) {
+                        //Dealing with destination tile
+                        if (this.tileIsEmptyOrOccupiedByOpponent(passedPosition, boardState, team)) {
+                            return true;
+                        }
+                    } else {
+                        //Dealing with passing tile
+                        if (this.tileIsOccupied(passedPosition, boardState)) {
+                            break;
+                        }
+                    }
+                }   
+
+                //Bottom left movement
+                if (desiredPosition.x < initialPosition.x && desiredPosition.y < initialPosition.y) {
+                    let passedPosition: Position = {x: initialPosition.x - i, y: initialPosition.y - i};
+                    //Check if the tile is the destination tile
+                    if (passedPosition.x === desiredPosition.x && passedPosition.y === desiredPosition.y) {
+                        //Dealing with destination tile
+                        if (this.tileIsEmptyOrOccupiedByOpponent(passedPosition, boardState, team)) {
+                            return true;
+                        }
+                    } else {
+                        //Dealing with passing tile
+                        if (this.tileIsOccupied(passedPosition, boardState)) {
+                            break;
+                        }
+                    }
                 }
-            }
 
-            if (desiredPosition.x - initialPosition.x === i && desiredPosition.y - initialPosition.y === i) {
-                return true;
-            }
-
-            //Bottom right movement
-            if (desiredPosition.x > initialPosition.x && desiredPosition.y < initialPosition.y) {
-                let passedPosition: Position = {x: initialPosition.x + i, y: initialPosition.y - i};
-                if(this.tileIsOccupied(passedPosition, boardState)) {
-                    console.log("Illegal move");
-                    break;
+                //Top left movement
+                if (desiredPosition.x < initialPosition.x && desiredPosition.y > initialPosition.y) {
+                    let passedPosition: Position = {x: initialPosition.x - i, y: initialPosition.y + i};
+                    //Check if the tile is the destination tile
+                    if (passedPosition.x === desiredPosition.x && passedPosition.y === desiredPosition.y) {
+                        //Dealing with destination tile
+                        if (this.tileIsEmptyOrOccupiedByOpponent(passedPosition, boardState, team)) {
+                            return true;
+                        }
+                    } else {
+                        //Dealing with passing tile
+                        if (this.tileIsOccupied(passedPosition, boardState)) {
+                            break;
+                        }
+                    }
                 }
-            }
-
-            if (desiredPosition.x - initialPosition.x === i && desiredPosition.y - initialPosition.y === -i) {
-                return true;
-            }
-
-            //Bottom left movement
-            if (desiredPosition.x < initialPosition.x && desiredPosition.y < initialPosition.y) {
-                let passedPosition: Position = {x: initialPosition.x - i, y: initialPosition.y - i};
-                if (this.tileIsOccupied(passedPosition, boardState)) {
-                    console.log("Illegal move");
-                    break;
-                }
-            }
-
-            if (desiredPosition.x - initialPosition.x === -i && desiredPosition.y - initialPosition.y === -i) {
-                return true;
-            }
-
-            //Top left movement
-            if (desiredPosition.x < initialPosition.x && desiredPosition.y > initialPosition.y) {
-                let passedPosition: Position = {x: initialPosition.x - i, y: initialPosition.y + i};
-                if (this.tileIsOccupied(passedPosition, boardState)) {
-                    console.log("Illegal move");
-                    break;
-                }
-            }
-
-            if (desiredPosition.x - initialPosition.x === -i && desiredPosition.y - initialPosition.y === i) {
-                return true;
-            }
             }
         }
 
