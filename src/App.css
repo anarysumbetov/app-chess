@@ -3,4 +3,9 @@
   place-content: center;
   height: 100vh;
   background-color: #202020;
+  position: absolute;
+  top: 0px;
+  right: 0px; 
+  bottom: 0px;
+  left: 0px;
 }
