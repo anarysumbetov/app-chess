@@ -36,7 +36,7 @@ export interface Piece {
 
 export const initialBoardState: Piece[] = [
     {
-        image: `assets/images/rook_b.png`, 
+        image: require(`./images/rook_b.png`),
         position: {
             x: 0, 
             y: 7, 
@@ -45,7 +45,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/knight_b.png`, 
+        image: require(`./images/knight_b.png`), 
         position: {
             x: 1,
             y: 7,
@@ -54,7 +54,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/bishop_b.png`, 
+        image: require(`./images/bishop_b.png`), 
         position: {
             x: 2, 
             y: 7, 
@@ -63,7 +63,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/queen_b.png`,
+        image: require(`./images/queen_b.png`),
         position: {
             x: 3, 
             y: 7, 
@@ -72,7 +72,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/king_b.png`, 
+        image: require(`./images/king_b.png`), 
         position: {
             x: 4, 
             y: 7, 
@@ -81,7 +81,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/bishop_b.png`, 
+        image: require(`./images/bishop_b.png`), 
         position: {
             x: 5, 
             y: 7, 
@@ -90,7 +90,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/knight_b.png`, 
+        image: require(`./images/knight_b.png`), 
         position: {
             x: 6, 
             y: 7, 
@@ -99,7 +99,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/rook_b.png`, 
+        image: require(`./images/rook_b.png`), 
         position: {
             x: 7, 
             y: 7, 
@@ -108,7 +108,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/pawn_b.png`, 
+        image: require(`./images/pawn_b.png`), 
         position: {
             x: 0, 
             y: 6, 
@@ -117,7 +117,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/pawn_b.png`, 
+        image: require(`./images/pawn_b.png`), 
         position: {
             x: 1, 
             y: 6, 
@@ -126,7 +126,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/pawn_b.png`, 
+        image: require(`./images/pawn_b.png`), 
         position: {
             x: 2, 
             y: 6, 
@@ -135,7 +135,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/pawn_b.png`, 
+        image: require(`./images/pawn_b.png`), 
         position: {
             x: 3, 
             y: 6, 
@@ -144,7 +144,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/pawn_b.png`,
+        image: require(`./images/pawn_b.png`),
         position: {
             x: 4, 
             y: 6, 
@@ -153,7 +153,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/pawn_b.png`, 
+        image: require(`./images/pawn_b.png`), 
         position: {
             x: 5, 
             y: 6, 
@@ -162,7 +162,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/pawn_b.png`, 
+        image: require(`./images/pawn_b.png`), 
         position: {
             x: 6, 
             y: 6, 
@@ -171,7 +171,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OPPONENT 
     },
     {
-        image: `assets/images/pawn_b.png`, 
+        image: require(`./images/pawn_b.png`), 
         position: {
             x: 7, 
             y: 6, 
@@ -181,7 +181,7 @@ export const initialBoardState: Piece[] = [
     },
 
     {
-        image: `assets/images/rook_w.png`, 
+        image: require(`./images/rook_w.png`), 
         position: {
             x: 0, 
             y: 0, 
@@ -190,7 +190,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/knight_w.png`, 
+        image: require(`./images/knight_w.png`), 
         position: {
             x: 1, 
             y: 0, 
@@ -199,7 +199,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/bishop_w.png`, 
+        image: require(`./images/bishop_w.png`), 
         position: {
             x: 2, 
             y: 0, 
@@ -208,7 +208,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/queen_w.png`, 
+        image: require(`./images/queen_w.png`), 
         position: {
             x: 3, 
             y: 0, 
@@ -217,7 +217,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/king_w.png`, 
+        image: require(`./images/king_w.png`), 
         position: {
             x: 4, 
             y: 0, 
@@ -226,7 +226,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/bishop_w.png`, 
+        image: require(`./images/bishop_w.png`), 
         position: {
             x: 5, 
             y: 0, 
@@ -235,7 +235,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/knight_w.png`,
+        image: require(`./images/knight_w.png`),
         position: {
             x: 6, 
             y: 0, 
@@ -244,7 +244,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/rook_w.png`, 
+        image: require(`./images/rook_w.png`), 
         position: {
             x: 7, 
             y: 0, 
@@ -253,7 +253,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/pawn_w.png`, 
+        image: require(`./images/pawn_w.png`), 
         position: {
             x: 0, 
             y: 1,
@@ -262,7 +262,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/pawn_w.png`, 
+        image: require(`./images/pawn_w.png`), 
         position: {
             x: 1, 
             y: 1, 
@@ -271,7 +271,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/pawn_w.png`, 
+        image: require(`./images/pawn_w.png`), 
         position: {
             x: 2, 
             y: 1, 
@@ -280,7 +280,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/pawn_w.png`, 
+        image: require(`./images/pawn_w.png`), 
         position: {
             x: 3, 
             y: 1, 
@@ -289,7 +289,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/pawn_w.png`, 
+        image: require(`./images/pawn_w.png`), 
         position: {
             x: 4, 
             y: 1, 
@@ -298,7 +298,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/pawn_w.png`, 
+        image: require(`./images/pawn_w.png`), 
         position: {
             x: 5, 
             y: 1, 
@@ -307,7 +307,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/pawn_w.png`, 
+        image: require(`./images/pawn_w.png`), 
         position: {
             x: 6, 
             y: 1,
@@ -316,7 +316,7 @@ export const initialBoardState: Piece[] = [
         team: TeamType.OUR 
     },
     {
-        image: `assets/images/pawn_w.png`, 
+        image: require(`./images/pawn_w.png`), 
         position: {
             x: 7, 
             y: 1, 

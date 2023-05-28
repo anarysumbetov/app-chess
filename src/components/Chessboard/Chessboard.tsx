@@ -201,7 +201,7 @@ export default function Chessboard() {
                         break;
                     }
                 }
-                piece.image = `assets/images/${image}_${teamType}.png`;
+                piece.image = require(`../../images/${image}_${teamType}.png`);
             }
             results.push(piece);
             return results;
@@ -231,10 +231,10 @@ export default function Chessboard() {
     <>
         <div id="pawn-promotion-modal" className="hidden" ref={modalRef}>
             <div className="modal-body">
-                <img onClick={() => promotePawn(PieceType.ROOK)} src={`/assets/images/rook_${promotionTeamType()}.png`}/>
-                <img onClick={() => promotePawn(PieceType.BISHOP)} src={`/assets/images/bishop_${promotionTeamType()}.png`}/>
-                <img onClick={() => promotePawn(PieceType.KNIGHT)} src={`/assets/images/knight_${promotionTeamType()}.png`}/>
-                <img onClick={() => promotePawn(PieceType.QUEEN)} src={`/assets/images/queen_${promotionTeamType()}.png`}/>
+                <img onClick={() => promotePawn(PieceType.ROOK)} src={require(`../../images/rook_${promotionTeamType()}.png`)} alt="rook" />
+                <img onClick={() => promotePawn(PieceType.BISHOP)} src={require(`../../images/bishop_${promotionTeamType()}.png`)} alt="bishop" />
+                <img onClick={() => promotePawn(PieceType.KNIGHT)} src={require(`../../images/knight_${promotionTeamType()}.png`)} alt="knight" />
+                <img onClick={() => promotePawn(PieceType.QUEEN)} src={require(`../../images/queen_${promotionTeamType()}.png`)} alt="queen" />
             </div>
         </div>
         <div 
