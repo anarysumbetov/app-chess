@@ -1,6 +1,6 @@
 import { PieceType, TeamType, Piece, Position } from "../Constants.ts";
 
-import { pawnMove, knightMove, bishopMove, rookMove, queenMove, kingMove } from "./rules/index.ts";
+import { pawnMove, knightMove, bishopMove, rookMove, queenMove, kingMove, getPossiblePawnMoves } from "./rules/index.ts";
 
 export default class Referee {
     isEnPassantMove(
@@ -56,5 +56,14 @@ export default class Referee {
         }
 
         return validMove;
+    }
+
+    getValidMoves(piece: Piece, boardState: Piece[]) : Position[] {
+        switch(piece.type) {
+            case PieceType.PAWN:
+                return getPossiblePawnMoves(piece, boardState);
+            default:
+                return [];
+        }
     }
 }
