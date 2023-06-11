@@ -1,4 +1,3 @@
-import { PieceType } from "../../Constants.ts";
 import { TeamType, Piece, Position, samePosition } from "../../Constants.ts";
 import { tileIsOccupied, tileIsOccupiedByOpponent } from "./GeneralRules.ts";
 
