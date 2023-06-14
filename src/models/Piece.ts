@@ -1,7 +1,6 @@
 // import { TeamType, PieceType } from "../Types.ts";
-// import { Position } from "./Position.ts";
-import { TeamType, PieceType, Position } from "../Constants.ts";
-
+import { Position } from "./Position.ts";
+import { TeamType, PieceType } from "../Constants.ts";
 
 export class Piece {
     image: string;
