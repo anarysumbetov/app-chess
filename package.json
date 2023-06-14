@@ -40,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "fork-ts-checker-webpack-plugin": "^8.0.0",
     "gh-pages": "^5.0.0",
     "typescript": "^5.1.3"
   }

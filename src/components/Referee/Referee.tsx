@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
-import { Piece, PieceType, Position, TeamType, initialBoardState, samePosition } from "../../Constants.ts";
+import { PieceType, Position, TeamType, initialBoardState, samePosition } from "../../Constants.ts";
+import { Piece } from "../../models/Piece.ts";
 import { pawnMove, knightMove, bishopMove, rookMove, queenMove, kingMove, getPossiblePawnMoves, getPossibleKnightMoves, getPossibleBishopMoves, getPossibleRookMoves, getPossibleQueenMoves, getPossibleKingMoves } from "../../referee/rules/index.ts";
 import Chessboard from "../Chessboard/Chessboard.tsx";
 
@@ -8,6 +9,7 @@ export default function Referee() {
     const [promotionPawn, setPromotionPawn] = useState<Piece>();
     const modalRef = useRef<HTMLDivElement>(null);
 
+    // eslint-disable-next-line
     useEffect(() => {
         updatePossibleMoves();
     }, []);

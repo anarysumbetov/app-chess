@@ -1,4 +1,5 @@
-import { TeamType, Piece, Position, samePosition } from "../../Constants.ts";
+import { TeamType, Position, samePosition } from "../../Constants.ts";
+import { Piece } from "../../models/Piece.ts";
 import { tileIsOccupied, tileIsOccupiedByOpponent } from "./GeneralRules.ts";
 
 export const pawnMove = (initialPosition: Position, desiredPosition: Position, team: TeamType, boardState: Piece[]): boolean => {
