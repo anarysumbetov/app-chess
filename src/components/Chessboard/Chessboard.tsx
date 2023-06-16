@@ -25,7 +25,7 @@ export default function Chessboard({ playMove, pieces } : Props) {
         if (element.classList.contains("chess-piece") && chessboard) {
             const grabX = Math.floor((e.clientX - chessboard.offsetLeft) / GRID_SIZE);
             const grabY = Math.abs(Math.ceil((e.clientY - chessboard.offsetTop - 800) / GRID_SIZE));
-            setGrabPosition(new Position(grabX, grabY),);
+            setGrabPosition(new Position(grabX, grabY));
 
             const x = e.clientX - GRID_SIZE / 2;
             const y = e.clientY - GRID_SIZE / 2;
@@ -89,7 +89,7 @@ export default function Chessboard({ playMove, pieces } : Props) {
             );
 
             if(currentPiece) {
-                var success = playMove(currentPiece, new Position(x, y),);
+                var success = playMove(currentPiece, new Position(x, y));
 
                 if(!success) {
                     //RESETS THE PIECE POSITION
@@ -109,11 +109,11 @@ export default function Chessboard({ playMove, pieces } : Props) {
     for(let j = VERTICAL_AXIS.length - 1; j >= 0; j--){
         for(let i = 0; i < HORIZONTAL_AXIS.length; i++) {
             const number = j + i + 2;
-            const piece = pieces.find((p) => samePosition(p.position, new Position(i, j),));
+            const piece = pieces.find((p) => samePosition(p.position, new Position(i, j)));
             let image = piece ? piece.image : undefined;
 
             let currentPiece = activePiece != null ? pieces.find(p => samePosition(p.position, grabPosition)) : undefined;
-            let highlight = currentPiece?.possibleMoves ? currentPiece.possibleMoves.some(p => samePosition(p, new Position(i, j),)) : false;
+            let highlight = currentPiece?.possibleMoves ? currentPiece.possibleMoves.some(p => samePosition(p, new Position(i, j))) : false;
 
             board.push(<Tile key={`${j}, ${i}`} image={image} number={number} highlight={highlight} />);
         }
