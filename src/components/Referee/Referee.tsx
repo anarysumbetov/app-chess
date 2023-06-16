@@ -1,13 +1,16 @@
 import { useRef, useState, useEffect } from "react";
-import { Piece, PieceType, Position, TeamType, initialBoardState, samePosition } from "../../Constants.ts";
+import { PieceType, TeamType, initialBoardState, samePosition } from "../../Constants.ts";
+
 import { pawnMove, knightMove, bishopMove, rookMove, queenMove, kingMove, getPossiblePawnMoves, getPossibleKnightMoves, getPossibleBishopMoves, getPossibleRookMoves, getPossibleQueenMoves, getPossibleKingMoves } from "../../referee/rules/index.ts";
 import Chessboard from "../Chessboard/Chessboard.tsx";
+import { Piece, Position } from "../../models";
 
 export default function Referee() {
     const [pieces, setPieces] = useState<Piece[]>(initialBoardState);
     const [promotionPawn, setPromotionPawn] = useState<Piece>();
     const modalRef = useRef<HTMLDivElement>(null);
 
+    // eslint-disable-next-line
     useEffect(() => {
         updatePossibleMoves();
     }, []);
@@ -46,7 +49,7 @@ export default function Referee() {
                     piece.position.y = destination.y;
                     results.push(piece);
                 }   else if (
-                    !samePosition(piece.position, { x: destination.x, y: destination.y - pawnDirection })
+                    !samePosition(piece.position, new Position(destination.x, destination.y - pawnDirection))
                 ) {
                     if(piece.type === PieceType.PAWN) {
                         piece.enPassant = false;
@@ -77,7 +80,7 @@ export default function Referee() {
                         setPromotionPawn(piece);
                     }
                 results.push(piece);
-            } else if (!(samePosition(piece.position, { x: destination.x, y: destination.y }))) {
+            } else if (!(samePosition(piece.position, new Position(destination.x, destination.y)))) {
                 if(piece.type === PieceType.PAWN) {
                     piece.enPassant = false;
                 }
