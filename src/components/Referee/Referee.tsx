@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { PieceType, TeamType, initialBoardState, samePosition } from "../../Constants.ts";
+import { PieceType, TeamType, initialBoardState } from "../../Constants.ts";
 
 import { pawnMove, knightMove, bishopMove, rookMove, queenMove, kingMove, getPossiblePawnMoves, getPossibleKnightMoves, getPossibleBishopMoves, getPossibleRookMoves, getPossibleQueenMoves, getPossibleKingMoves } from "../../referee/rules/index.ts";
 import Chessboard from "../Chessboard/Chessboard.tsx";
@@ -43,13 +43,13 @@ export default function Referee() {
 
         if (enPassantMove) {
             const updatedPieces = pieces.reduce((results, piece) => {
-                if (samePosition(piece.position, playedPiece.position)) {
+                if (piece.samePiecePosition(playedPiece)) {
                     piece.enPassant = false;
                     piece.position.x = destination.x;
                     piece.position.y = destination.y;
                     results.push(piece);
                 }   else if (
-                    !samePosition(piece.position, new Position(destination.x, destination.y - pawnDirection))
+                    !piece.samePosition(new Position(destination.x, destination.y - pawnDirection))
                 ) {
                     if(piece.type === PieceType.PAWN) {
                         piece.enPassant = false;
@@ -66,7 +66,7 @@ export default function Referee() {
             //UPDATES THE PIECE POSITION
             //AND IF A PIECE IS ATTACKED, REMOVES IT
             const updatedPieces = pieces.reduce((results, piece) => {
-                if (samePosition(piece.position, playedPiece.position)) {
+                if (piece.samePiecePosition(playedPiece)) {
                     //SPECIAL MOVE
                     piece.enPassant = Math.abs(playedPiece.position.y - destination.y) === 2 && piece.type === PieceType.PAWN;
                     
@@ -80,7 +80,7 @@ export default function Referee() {
                         setPromotionPawn(piece);
                     }
                 results.push(piece);
-            } else if (!(samePosition(piece.position, new Position(destination.x, destination.y)))) {
+            } else if (!piece.samePosition(new Position(destination.x, destination.y))) {
                 if(piece.type === PieceType.PAWN) {
                     piece.enPassant = false;
                 }
@@ -178,7 +178,7 @@ export default function Referee() {
         }
 
         const updatedPieces = pieces.reduce((results, piece) => {
-            if (samePosition(piece.position, promotionPawn.position)) {
+            if (piece.samePiecePosition(promotionPawn)) {
                 piece.type = pieceType;
                 const teamType = (piece.team === TeamType.OUR) ? "w" : "b";
                 let image = "";

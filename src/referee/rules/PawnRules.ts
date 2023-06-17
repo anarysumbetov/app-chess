@@ -1,4 +1,4 @@
-import { TeamType, samePosition } from "../../Constants.ts";
+import { TeamType } from "../../Constants.ts";
 import { Piece, Position } from "../../models";
 import { tileIsOccupied, tileIsOccupiedByOpponent } from "./GeneralRules.ts";
 
@@ -60,7 +60,7 @@ export const getPossiblePawnMoves = (pawn: Piece, boardState: Piece[]) : Positio
     if (tileIsOccupiedByOpponent(upperLeftAttack, boardState, pawn.team)) {
         possibleMoves.push(upperLeftAttack);
     } else if (!tileIsOccupied(upperLeftAttack, boardState)) {
-        const leftPiece = boardState.find(p => samePosition(p.position, leftPosition));
+        const leftPiece = boardState.find(p => p.samePosition(leftPosition));
 
         if (leftPiece != null && leftPiece.enPassant) {
             possibleMoves.push(upperLeftAttack);
@@ -70,7 +70,7 @@ export const getPossiblePawnMoves = (pawn: Piece, boardState: Piece[]) : Positio
     if (tileIsOccupiedByOpponent(upperRightAttack, boardState, pawn.team)) {
         possibleMoves.push(upperRightAttack);
     } else if (!tileIsOccupied(upperRightAttack, boardState)) {
-        const rightPiece = boardState.find(p => samePosition(p.position, rightPosition));
+        const rightPiece = boardState.find(p => p.samePosition(rightPosition));
 
         if (rightPiece != null && rightPiece.enPassant) {
             possibleMoves.push(upperRightAttack);
