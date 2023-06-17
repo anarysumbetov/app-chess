@@ -5,7 +5,6 @@ import {
     VERTICAL_AXIS, 
     HORIZONTAL_AXIS, 
     GRID_SIZE,
-    samePosition
 } from "../../Constants.ts";
 import { Piece, Position } from "../../models";
 
@@ -85,7 +84,7 @@ export default function Chessboard({ playMove, pieces } : Props) {
             );
 
             const currentPiece = pieces.find(
-                (p) => samePosition(p.position, grabPosition)
+                (p) => p.samePosition(grabPosition)
             );
 
             if(currentPiece) {
@@ -109,11 +108,11 @@ export default function Chessboard({ playMove, pieces } : Props) {
     for(let j = VERTICAL_AXIS.length - 1; j >= 0; j--){
         for(let i = 0; i < HORIZONTAL_AXIS.length; i++) {
             const number = j + i + 2;
-            const piece = pieces.find((p) => samePosition(p.position, new Position(i, j)));
+            const piece = pieces.find((p) => p.samePosition(new Position(i, j)));
             let image = piece ? piece.image : undefined;
 
-            let currentPiece = activePiece != null ? pieces.find(p => samePosition(p.position, grabPosition)) : undefined;
-            let highlight = currentPiece?.possibleMoves ? currentPiece.possibleMoves.some(p => samePosition(p, new Position(i, j))) : false;
+            let currentPiece = activePiece != null ? pieces.find(p => p.samePosition(grabPosition)) : undefined;
+            let highlight = currentPiece?.possibleMoves ? currentPiece.possibleMoves.some(p => p.samePosition(new Position(i, j))) : false;
 
             board.push(<Tile key={`${j}, ${i}`} image={image} number={number} highlight={highlight} />);
         }
