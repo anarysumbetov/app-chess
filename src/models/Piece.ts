@@ -49,10 +49,10 @@ export class Piece {
 
     clone(): Piece {
         return new Piece(
-            this.position, 
+            this.position.clone(), 
             this.type, 
             this.team, 
-            this.possibleMoves
+            this.possibleMoves?.map(m => m.clone())
         );
     }
 }
