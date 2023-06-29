@@ -82,6 +82,8 @@ export class Board {
                 results.push(piece);
             }
 
+                // The piece at the destination location
+                // Won't be pushed in the results
                 return results;
             }, [] as Piece[]);
             
@@ -91,5 +93,9 @@ export class Board {
         }
 
         return true;
+    }
+
+    clone(): Board {
+        return new Board(this.pieces.map(p => p.clone()),);
     }
 }
