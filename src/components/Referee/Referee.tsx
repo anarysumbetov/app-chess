@@ -24,7 +24,7 @@ export default function Referee() {
 
     function playMove(playedPiece: Piece, destination: Position) : boolean {
         let playedMoveIsValid = false;
-        
+
         const validMove = isValidMove(
             playedPiece.position,
             destination,
@@ -60,7 +60,11 @@ export default function Referee() {
 
         if (destination.y === promotionRow && playedPiece.isPawn) {
             modalRef.current?.classList.remove("hidden");
-            setPromotionPawn(playedPiece);
+            setPromotionPawn((previousPromotionPawn) => {
+                const clonedPlayedPiece = playedPiece.clone();
+                clonedPlayedPiece.position = destination.clone();
+                return clonedPlayedPiece;            
+            });
         }
 
         return playedMoveIsValid;
@@ -125,37 +129,23 @@ export default function Referee() {
             return;
         }
 
-        board.pieces = board.pieces.reduce((results, piece) => {
-            if (piece.samePiecePosition(promotionPawn)) {
-                piece.type = pieceType;
-                const teamType = (piece.team === TeamType.OUR) ? "w" : "b";
-                let image = "";
-                switch(pieceType) {
-                    case PieceType.ROOK: {
-                        image = "rook";
-                        break;
-                    }
-                    case PieceType.BISHOP: {
-                        image = "bishop";
-                        break;
-                    }
-                    case PieceType.KNIGHT: {
-                        image = "knight";
-                        break;
-                    }
-                    case PieceType.QUEEN: {
-                        image = "queen";
-                        break;
-                    }
-                }
-                piece.image = require(`../../images/${image}_${teamType}.png`);
-            }
-            results.push(piece);
-            return results;
-        }, [] as Piece[])
-        
-        updatePossibleMoves();
+        setBoard(() => {
+            const clonedBoard = board.clone();
 
+            clonedBoard.pieces = clonedBoard.pieces.reduce((results, piece) => {
+                if (piece.samePiecePosition(promotionPawn)) {
+                    results.push(new Piece(piece.position.clone(), pieceType, piece.team));
+                } else {
+                    results.push(piece);
+                }
+                return results;
+            }, [] as Piece[])
+
+            clonedBoard.calculateAllMoves();
+
+            return clonedBoard;
+        })
+        
         modalRef.current?.classList.add("hidden");
     }
 
