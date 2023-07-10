@@ -15,16 +15,16 @@ export default function Referee() {
 
     // eslint-disable-next-line
     useEffect(() => {
-        updatePossibleMoves();
-    }, []);
-
-    function updatePossibleMoves() {
         board.calculateAllMoves();
-    }
+    }, []);
 
     function playMove(playedPiece: Piece, destination: Position) : boolean {
         // If the playing piece doesn't have any moves return
         if (playedPiece.possibleMoves === undefined) return false;
+
+        // Prevent the inactive team from playing
+        if (playedPiece.team === TeamType.OUR && board.totalTurns % 2 !== 1) return false;
+        if (playedPiece.team === TeamType.OPPONENT && board.totalTurns % 2 !== 0) return false;
 
         let playedMoveIsValid = false;
 
@@ -43,6 +43,7 @@ export default function Referee() {
         // need to call setBoard
         setBoard(() => {
             const clonedBoard = board.clone();
+            clonedBoard.totalTurns += 1;
             
             // Playing the move
             playedMoveIsValid = clonedBoard.playMove(
@@ -155,6 +156,7 @@ export default function Referee() {
 
     return (
         <>
+        <p style={{ color: "white", fontSize: "24px" }}>{board.totalTurns}</p>
             <div id="pawn-promotion-modal" className="hidden" ref={modalRef}>
                 <div className="modal-body">
                     <img onClick={() => promotePawn(PieceType.ROOK)} src={require(`../../images/rook_${promotionTeamType()}.png`)} alt="rook" />

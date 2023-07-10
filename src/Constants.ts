@@ -153,4 +153,4 @@ export const initialBoard: Board = new Board([
         new Position(7, 1), 
         TeamType.OUR
     ),
-]);
+], 1);
