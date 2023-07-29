@@ -7,6 +7,7 @@ import { Position } from "./Position.ts";
 export class Board {
     pieces: Piece[];
     totalTurns: number;
+    winningTeam?: TeamType;
 
     constructor(pieces: Piece[], totalTurns: number) {
         this.pieces = pieces;
@@ -18,7 +19,7 @@ export class Board {
     }
 
     calculateAllMoves() {
-        // Calculate the moves of all pieces
+        // Calculate the moves of all the pieces
         for (const piece of this.pieces) {
             piece.possibleMoves = this.getValidMoves(piece, this.pieces);
         }
@@ -37,6 +38,13 @@ export class Board {
         for (const piece of this.pieces.filter(p => p.team !== this.currentTeam)) {
             piece.possibleMoves = [];
         }
+
+        // Check if the playing team still has moves left
+        // Otherwise, checkmate!
+        if (this.pieces.filter(p => p.team === this.currentTeam)
+            .some(p => p.possibleMoves !== undefined && p.possibleMoves.length > 0)) return;
+
+        this.winningTeam = (this.currentTeam === TeamType.OUR) ? TeamType.OPPONENT : TeamType.OUR;
     }
 
     checkCurrentTeamMoves() {
