@@ -94,10 +94,6 @@ export default function Referee() {
     }
 
     //TODO
-    //Pawn promotion!
-    //Prevent the king from moving into danger!
-    //Add castling!
-    //Add check!
     //Add checkmate!
     //Add stalemate!
     function isValidMove(initialPosition: Position, desiredPosition: Position, type: PieceType, team: TeamType) {
